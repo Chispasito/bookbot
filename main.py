@@ -3,6 +3,8 @@ from stats import get_book_word_count
 from stats import get_book_characters
 from stats import sort_book_character_count
 
+global_path = sys.argv
+
 def get_book_text(filepath):
     file_string = ""
     if filepath is None or filepath == "":
@@ -16,9 +18,10 @@ def get_book_text(filepath):
 def main():
     book_string = ""
     try:
-        book_string = get_book_text("books/frankenstein.txt")
+        book_string = get_book_text(global_path[1])
     except Exception as e:
-        print("Couldn't find a book")
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
     
     print("============ BOOKBOT ============ " 
         + "\nAnalyzing book found at books/frankenstein.txt..."
